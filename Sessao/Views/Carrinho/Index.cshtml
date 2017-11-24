@@ -1,0 +1,21 @@
+﻿@using Sessao.Models
+@model Carrinho
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.ActionLink("Cancelar carrinho", "Cancelar")
+
+<ul>
+    @foreach (var p in Model.getProdutos())
+    {
+        <li>@p.Nome (@p.Preco) - @Html.ActionLink("Remover do carrinho", "Remover", new { id = p.ProdutoID})</li>
+    }
+</ul>
+
+<p>
+    Total: R$ @Model.getProdutos().Sum(x => Convert.ToDouble(x.Preco));
+</p>
